@@ -165,10 +165,11 @@ class Robot:
         path = [curr]
 
         # Extract current and destination coordinates
-        curr_x = curr[0]
-        curr_y = curr[1]
-        dest_x = dest[0]
-        dest_y = dest[1]
+        # Convert to integers since robot moves in discrete steps
+        curr_x = int(curr[0])
+        curr_y = int(curr[1])
+        dest_x = int(dest[0])
+        dest_y = int(dest[1])
 
         # Move along the x-direction first
         # Determine the direction of movement in x

@@ -60,29 +60,19 @@ def run_robots(data_filename):
 
             elif tokens[0].strip() == 'Item':
                 # Parse item data: Item, ID, name, weight, [x, y], arms, duration
+                # Format: Item, 1, apples, 12, [3,3], 1, 1
+                # After splitting by comma: ['Item', ' 1', ' apples', ' 12', ' [3', '3]', ' 1', ' 1']
                 item_id = int(tokens[1].strip())
                 name = tokens[2].strip()
                 weight = float(tokens[3].strip())
-                # Parse the location string which is in format [x,y]
-                # The location may span multiple tokens depending on spacing
-                # Find the token with '[' and reconstruct the location
-                loc_str = ''
-                loc_start_idx = 4
-                for i in range(4, len(tokens)):
-                    if '[' in tokens[i]:
-                        loc_start_idx = i
-                        break
-                for i in range(loc_start_idx, len(tokens)):
-                    loc_str += tokens[i].strip()
-                    if ']' in tokens[i]:
-                        # The next two tokens after location are arms and duration
-                        arm_requirement = int(tokens[i + 1].strip())
-                        duration = int(tokens[i + 2].strip())
-                        break
-                # Remove brackets and split by comma
-                loc_str = loc_str.replace('[', '').replace(']', '')
-                loc_parts = loc_str.split(',')
-                loc = [float(loc_parts[0].strip()), float(loc_parts[1].strip())]
+                # Parse the location which is split across tokens[4] and tokens[5]
+                # tokens[4] contains '[x' and tokens[5] contains 'y]'
+                x_str = tokens[4].strip().replace('[', '')
+                y_str = tokens[5].strip().replace(']', '')
+                loc = [float(x_str), float(y_str)]
+                # Parse arm requirement and duration from tokens[6] and tokens[7]
+                arm_requirement = int(tokens[6].strip())
+                duration = int(tokens[7].strip())
                 # Create an Item object and add to the items list
                 item = Item(item_id, name, weight, loc, arm_requirement, duration)
                 items.append(item)
