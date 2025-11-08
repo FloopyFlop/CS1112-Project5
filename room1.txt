@@ -1,0 +1,8 @@
+20, 10, 8
+Robot, 1, 4, [4,4]
+Robot, 3, 10, [1,2]
+Item, 1, apples, 12, [3,3], 1, 1
+Item, 4, rubber duck, 1, [5,5], 0, 3
+Item, 6, paperclip, 0.1, [9,1], 0, 3
+Item, 5, cat, 7, [5,7], 2, 2
+Item, 8, hockey puck, 0.35, [7,6], 0, 2
