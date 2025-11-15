@@ -114,12 +114,12 @@ print(f"{result1=}")                        # Should be False
 # Test case 2: Robot 1 can pick up item2 (rubber duck)
 result2 = robot1.pick(item2, do_pick=True, num_arms=0)
 print(f"{result2=}")                        # Should be True
-print(f"{robot1.total_operation_time()=}") # Should be 5 (1 step travel + 1 wait + 3 pickup)
+print(f"{robot1.total_operation_time()=}") # Should be 5 (2 steps travel + 3 pickup)
 print(f"{robot1.latest_resting_loc()=}")   # Should be [5, 5]
 # Test case 3: Robot 1 can pick up item3 (paperclip)
 result3 = robot1.pick(item3, do_pick=True, num_arms=0)
 print(f"{result3=}")                        # Should be True
-print(f"{robot1.total_operation_time()=}") # Should be 13 (previous 5 + 5 travel + 3 pickup)
+print(f"{robot1.total_operation_time()=}") # Should be 16 (previous 5 + 8 travel + 3 pickup)
 # Test case 4: Test that item2 cannot be picked up again (already scheduled)
 result4 = robot2.pick(item2, do_pick=True, num_arms=0)
 print(f"{result4=}")                        # Should be False
